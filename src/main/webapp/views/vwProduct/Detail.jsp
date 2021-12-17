@@ -122,6 +122,7 @@
                 });
             }
 
+
             $('#modalReject').on('show.bs.modal', function (event) {
                 let button = $(event.relatedTarget);
                 let proid = button.data('proid');
