@@ -1,0 +1,16 @@
+.all {
+    display: flex;
+    justify-content: center;
+}
+.list-img .img {
+    list-style: none;
+}
+.list-img img {
+    cursor: pointer;
+}
+#main_img {
+    width: 600px;
+}
+#main_img img {
+    width: 600px;
+}
