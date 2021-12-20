@@ -86,6 +86,71 @@ public class AuthFilter implements Filter {
             }
         }
 
+        if (request.getRequestURI().equals("/auctionWebApp/Admin/EditUser"))
+        {
+            if(authUser.getRole()==1) {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+            else if (authUser.getRole()==2)
+            {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+        }
+
+        if (request.getRequestURI().equals("/auctionWebApp/Admin/User"))
+        {
+            if(authUser.getRole()==1) {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+            else if (authUser.getRole()==2)
+            {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+        }
+
+        if (request.getRequestURI().equals("/auctionWebApp/Admin/Product"))
+        {
+            if(authUser.getRole()==1) {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+            else if (authUser.getRole()==2)
+            {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+        }
+
+        if (request.getRequestURI().equals("/auctionWebApp/Admin/Category"))
+        {
+            if(authUser.getRole()==1) {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+            else if (authUser.getRole()==2)
+            {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+        }
+
+        if (request.getRequestURI().equals("/auctionWebApp/Admin"))
+        {
+            if(authUser.getRole()==1) {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+            else if (authUser.getRole()==2)
+            {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+        }
+
         chain.doFilter(req, res); // cho phép request tiếp tục thực hiện
     }
 }

@@ -95,7 +95,7 @@ public class MailUtills {
         }
     }
 
-    public static void sendResetPassword(String email ){
+    public static void sendResetPassword(String email, String newPassword ){
         String subject = "Reset password request | Auction Website";
         String message = "<!DOCTYPE html>\n"
                 + "<html lang=\"en\">\n"
@@ -106,7 +106,7 @@ public class MailUtills {
                 + "<body>\n"
                 + "    <h3 style=\"color: blue;\">Your password has been reset.</h3>\n"
                 + "    <div>Email :" + email + "</div>\n"
-                + "    <div>Your reset password :" + email + "</div>\n"
+                + "    <div>Your reset password :" + newPassword + "</div>\n"
                 + "\n"
                 + "</body>\n"
                 + "\n"

@@ -1,10 +1,12 @@
 package com.ute.auctionwebapp.controllers;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import com.ute.auctionwebapp.beans.GoogleUser;
 import com.ute.auctionwebapp.beans.Product;
 import com.ute.auctionwebapp.beans.User;
 import com.ute.auctionwebapp.models.ProductModel;
 import com.ute.auctionwebapp.models.UserModel;
+import com.ute.auctionwebapp.utills.GoogleUtills;
 import com.ute.auctionwebapp.utills.MailUtills;
 import com.ute.auctionwebapp.utills.ServletUtills;
 import com.ute.auctionwebapp.utills.VerifyUtills;
@@ -111,6 +113,9 @@ public class AccountServlet extends HttpServlet {
                 request.setAttribute("winningProducts",winningProductList);
                 ServletUtills.forward("/views/vwAccount/YourProduct.jsp", request, response);
                 break;
+            case "/GoogleLogin":
+                loginWithGoogle(request, response);
+                break;
 
             default:
                 ServletUtills.forward("/views/404.jsp", request, response);
@@ -149,6 +154,9 @@ public class AccountServlet extends HttpServlet {
             case "/EditDes":
                 editDes(request, response);
                 break;
+            case "/LoginGoogle":
+                loginWithGoogle(request, response);
+                break;
 
             default:
                 ServletUtills.forward("/views/404.jsp", request, response);
@@ -168,8 +176,9 @@ public class AccountServlet extends HttpServlet {
         String address = request.getParameter("address");
         int role = 1;
         int reQuest = 0;
+        boolean gg_acc = false;
 
-        User c = new User(name, email, address,  bcryptHashString, dob, role, reQuest);
+        User c = new User(name, email, address,  bcryptHashString, dob, role, reQuest,gg_acc);
         UserModel.add(c);
         ServletUtills.redirect("/Home", request, response);
     }
@@ -200,7 +209,7 @@ public class AccountServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         User user = UserModel.findByUsername(email);
-        if (user != null) {
+        if (user != null && !user.isGg_acc()) {
             BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), user.getPassword());
             if (result.verified) {
                 HttpSession session = request.getSession();
@@ -251,6 +260,7 @@ public class AccountServlet extends HttpServlet {
             ServletUtills.forward("/views/vwAccount/ChangePwd.jsp", request, response);
         }
     }
+
     private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.setAttribute("auth", false);
@@ -264,10 +274,17 @@ public class AccountServlet extends HttpServlet {
 
     private void forgot(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
-        String bcryptHashString = BCrypt.withDefaults().hashToString(12, email.toCharArray());
-        UserModel.resetPassword(email,bcryptHashString);
+        User user = UserModel.findByUsername(email);
+        if (user != null && !user.isGg_acc()) {
+            String rawPassword = VerifyUtills.getPasswordRanDom(8);
+            String bcryptHashString = BCrypt.withDefaults().hashToString(12, rawPassword.toCharArray());
+            UserModel.resetPassword(email, bcryptHashString);
 
-        MailUtills.sendResetPassword(email);
+            MailUtills.sendResetPassword(email, rawPassword);
+        } else {
+            request.setAttribute("hasError", true);
+            request.setAttribute("errorMessage", "Invalid reset password!");
+        }
         ServletUtills.forward("/views/vwAccount/ForgotPassword.jsp", request, response);
     }
 
@@ -279,6 +296,63 @@ public class AccountServlet extends HttpServlet {
 
         ProductModel.EditDes(proid,date,fullDes);
         ServletUtills.redirect("/Account/YourProduct?uid="+uid,request,response);
+    }
+
+    private void loginWithGoogle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String code = request.getParameter("code");
+        if (code == null || code.isEmpty()) {
+            request.setAttribute("hasError", true);
+            request.setAttribute("errorMessage", "Invalid login!");
+            ServletUtills.forward("/views/vwAccount/Login.jsp", request, response);
+        } else {
+            String accessToken = GoogleUtills.getToken(code);
+            GoogleUser googleUser = GoogleUtills.getUserInfo(accessToken);
+            String googleEmail = googleUser.getEmail();
+            String googleName = googleUser.getName();
+            String googleID = googleUser.getId();
+            System.out.println(googleEmail);
+            System.out.println(googleID);
+            System.out.println(googleName);
+
+            User user = UserModel.findByUsername(googleEmail);
+            if (user == null && googleUser.isVerified_email()) {
+                //Register user
+                String rawpwd = VerifyUtills.getPasswordRanDom(8) + googleID;
+                String bcryptHashString = BCrypt.withDefaults().hashToString(12, rawpwd.toCharArray());
+                boolean gg_acc = true;
+
+                DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                LocalDateTime dob = LocalDateTime.parse("01/01/2001 00:00", df);
+
+                String address = "None";
+                int role = 1;
+                int reQuest = 0;
+
+                User c = new User(googleName, googleEmail, address,  bcryptHashString, dob, role, reQuest,gg_acc);
+                UserModel.add(c);
+
+                user = UserModel.findByUsername(googleEmail);
+                //Login to Home page
+                HttpSession session = request.getSession();
+                session.setAttribute("auth", true);
+                session.setAttribute("authUser", user);
+
+                ServletUtills.redirect("/Home", request, response);
+
+            } else {
+                if (user.isGg_acc() == true) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("auth", true);
+                    session.setAttribute("authUser", user);
+                    ServletUtills.redirect("/Home", request, response);
+                } else {
+                    request.setAttribute("hasError", true);
+                    request.setAttribute("errorMessage", "Invalid login! Your email has been used");
+                    ServletUtills.forward("/views/vwAccount/Login.jsp", request, response);
+                }
+            }
+        }
+
     }
 
 }

@@ -24,7 +24,7 @@ public class UserModel {
     }
 
     public static void add(User c) {
-        String insertSql = "INSERT INTO users (name, email, password, request, dob, role, address) VALUES (:name,:email,:password,:request,:dob,:role,:address)";
+        String insertSql = "INSERT INTO users (name, email, password, request, dob, role, address, gg_acc) VALUES (:name,:email,:password,:request,:dob,:role,:address,:gg_acc)";
         try (Connection con = DbUtills.getConnection()) {
             con.createQuery(insertSql)
                     .addParameter("password", c.getPassword())
@@ -34,6 +34,7 @@ public class UserModel {
                     .addParameter("role",c.getRole())
                     .addParameter("request", c.getReQuest())
                     .addParameter("address", c.getAddress())
+                    .addParameter("gg_acc", c.isGg_acc())
                     .executeUpdate();
         }
     }
@@ -50,6 +51,37 @@ public class UserModel {
         }
     }
 
+    public static void upgrage(User c) {
+        String insertSql = "UPDATE users SET request = :request WHERE id = :id \n";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(insertSql)
+                    .addParameter("id", c.getId())
+                    .addParameter("request", c.getReQuest())
+                    .executeUpdate();
+        }
+    }
+
+    public static void upgrageSeller(User c) {
+        String insertSql = "UPDATE users SET  role = :role, request = :request, request_date = date_add(NOW(),interval 7 day ) WHERE id = :id \n";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(insertSql)
+                    .addParameter("id", c.getId())
+                    .addParameter("role", c.getRole())
+                    .addParameter("request", c.getReQuest())
+                    .executeUpdate();
+        }
+    }
+
+    public static void downSeller(User c) {
+        String insertSql = "UPDATE users SET  role = :role, request = :request WHERE id = :id \n";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(insertSql)
+                    .addParameter("id", c.getId())
+                    .addParameter("role", c.getRole())
+                    .addParameter("request",c.getReQuest())
+                    .executeUpdate();
+        }
+    }
     public static void changepassword(User c) {
         String insertSql = "UPDATE users SET password = :password WHERE id = :id \n";
         try (Connection con = DbUtills.getConnection()) {
@@ -81,6 +113,19 @@ public class UserModel {
                 return null;
             }
             return list.get(0);
+        }
+    }
+
+    public static boolean findByuid(int id) {
+        final String query = "select * from users where id=:id";
+        try (Connection con = DbUtills.getConnection()) {
+            List<User> list = con.createQuery(query)
+                    .addParameter("id", id)
+                    .executeAndFetch(User.class);
+            if (list.size() == 0) {
+                return true;
+            }
+            return false;
         }
     }
     public static List<User> findAll(){

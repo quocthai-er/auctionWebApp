@@ -47,6 +47,30 @@
         <url-pattern>/Account/ChangePwd</url-pattern>
     </filter-mapping>
 
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/Admin</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/Admin/User</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/Admin/EditUser</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/Admin/Product</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/Admin/Category</url-pattern>
+    </filter-mapping>
 <!--    <filter-mapping>-->
 <!--        <filter-name>AuthFilter</filter-name>-->
 <!--        <url-pattern>/Product/AddWatchList</url-pattern>-->
