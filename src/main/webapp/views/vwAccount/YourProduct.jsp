@@ -20,7 +20,7 @@
                     let numPages = itemsTotal / itemsShown;
                     for (let i = 0; i < numPages; i++) {
                         let pageNum = i + 1;
-                        $('#'+navName+'').append('<a href="#" class="btn-outline-info btn-sm text-decoration-none rounded-lg border border-info" rel="' + i + '">&emsp;' + pageNum + '&emsp;</a> ');
+                        $('#'+navName+'').append('<a href="#" class="btn-outline-primary btn-sm text-decoration-none rounded-lg border border-info" rel="' + i + '">&emsp;' + pageNum + '&emsp;</a> ');
                     }
                     $(rowSelection).hide();
                     $(rowSelection).slice(0, itemsShown).show();
@@ -66,7 +66,7 @@
 
             function add (otp){
                 $.getJSON(otp, function (data) {
-                    if (data === 'false') {
+                    if (data === false) {
                         swal({
                             title: "Failed!",
                             text: "Failed added to your watchlist!",
@@ -89,8 +89,8 @@
     </jsp:attribute>
     <jsp:body>
         <section class="selling">
-            <div class="title-box bg-info mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px;">
-                <h2>Your products</h2>
+            <div class="title-box bg-danger mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px; font-family: 'Bauhaus 93'">
+                <h2>YOUR PRODUCTS</h2>
             </div>
 
             <%--Selling Product--%>
@@ -99,7 +99,7 @@
                     <h3 >Selling Products</h3>
                     <c:choose>
                         <c:when test="${authUser.role != 1}">
-                            <a id="btnAddPro" class="btn btn-info btn-lg mb-3" href="${pageContext.request.contextPath}/Product/Add" role="button">Add product</a>
+                            <a id="btnAddPro" class="btn btn-success btn-lg mb-3" href="${pageContext.request.contextPath}/Product/Add" role="button">Add Product</a>
                         </c:when>
                     </c:choose>
                 </div>
@@ -129,19 +129,19 @@
                                     </div>
                                     <div class="product-bottom text-center">
                                         <h3 class="mx-auto" name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
-                                        <h5 style="margin: 0">Price Current: $
+                                        <h5 class="text-primary" style="margin: 0"><b>Price Current:</b> $
                                             <fmt:formatNumber value="${p.price_current}" type="number" />
                                         </h5>
                                         <c:if test="${p.price_now!=0}">
-                                            <h5>Price Buy Now: $
+                                            <h5 class="text-danger"><b>Price Buy Now:</b> $
                                                 <fmt:formatNumber value="${p.price_now}" type="number" />
                                             </h5>
                                         </c:if>
-                                        <h5>Start Date:
+                                        <h5><b>Start Date:</b>
                                             <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                         </h5>
-                                        <h5>End Date:
+                                        <h5><b>End Date:</b>
                                             <fmt:parseDate value="${p.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                         </h5>
@@ -216,19 +216,19 @@
                                     </div>
                                     <div class="product-bottom text-center">
                                         <h3 class="mx-auto" style="width: 250px;height: 75px; object-fit: contain">${p2.proname}</h3>
-                                        <h5 style="margin: 0">Price Current: $
+                                        <h5 class="text-primary" style="margin: 0"><b>Price Current:</b> $
                                             <fmt:formatNumber value="${p2.price_current}" type="number" />
                                         </h5>
                                         <c:if test="${p2.price_now!=0}">
-                                            <h5>Price Buy Now: $
+                                            <h5 class="text-danger"><b>Price Buy Now:</b> $
                                                 <fmt:formatNumber value="${p2.price_now}" type="number" />
                                             </h5>
                                         </c:if>
-                                        <h5>Start Date:
+                                        <h5><b>Start Date:</b>
                                             <fmt:parseDate value="${p2.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                         </h5>
-                                        <h5>End Date:
+                                        <h5><b>End Date:</b>
                                             <fmt:parseDate value="${p2.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                         </h5>
@@ -269,19 +269,19 @@
                                     </div>
                                     <div class="product-bottom text-center">
                                         <h3 class="mx-auto" style="width: 250px;height: 75px; object-fit: contain">${p3.proname}</h3>
-                                        <h5 style="margin: 0">Price Current: $
+                                        <h5 class="text-primary" style="margin: 0"><b>Price Current:</b> $
                                             <fmt:formatNumber value="${p3.price_current}" type="number" />
                                         </h5>
                                         <c:if test="${p3.price_now!=0}">
-                                            <h5>Price Buy Now: $
+                                            <h5 class="text-danger"><b>Price Buy Now:</b> $
                                                 <fmt:formatNumber value="${p3.price_now}" type="number" />
                                             </h5>
                                         </c:if>
-                                        <h5>Start Date:
+                                        <h5><b>Start Date:</b>
                                             <fmt:parseDate value="${p3.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                         </h5>
-                                        <h5>End Date:
+                                        <h5><b>End Date:</b>
                                             <fmt:parseDate value="${p3.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                         </h5>
@@ -322,20 +322,20 @@
                                     </div>
                                     <div class="product-bottom text-center">
                                         <h3 class="mx-auto" style="width: 250px;height: 75px; object-fit: contain">${p4.proname}</h3>
-                                        <h5 style="margin: 0">Price Current: $
-                                        <h5 style="margin: 0">Price Current: $
+                                      <%--  <h5 style="margin: 0">Price Current: $--%>
+                                        <h5 class="text-primary" style="margin: 0"><b>Price Current:</b> $
                                             <fmt:formatNumber value="${p4.price_current}" type="number" />
                                         </h5>
                                         <c:if test="${p4.price_now!=0}">
-                                            <h5>Price Buy Now: $
+                                            <h5 class="text-danger"><b>Price Buy Now:</b> $
                                                 <fmt:formatNumber value="${p4.price_now}" type="number" />
                                             </h5>
                                         </c:if>
-                                        <h5>Start Date:
+                                        <h5><b>Start Date:</b>
                                             <fmt:parseDate value="${p4.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                         </h5>
-                                        <h5>End Date:
+                                        <h5><b>End Date:</b>
                                             <fmt:parseDate value="${p4.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                         </h5>

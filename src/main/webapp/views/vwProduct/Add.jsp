@@ -143,8 +143,7 @@
                     <label class="form-check-label" for="chkAutoRenew">Auto-renew? </label>
                     <span class="d-inline-block " tabindex="0" data-toggle="tooltip" title="When there is a new auction before the end of 5 minutes, the product will automatically renew for another 10 minutes. Default is off!">
                 <i class="fa fa-question-circle text-secondary" aria-hidden="true"></i>
-
-                    </span>
+                </span>
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" name="allow_bid" class="form-check-input" id="chkAllowBid">

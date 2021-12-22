@@ -10,8 +10,8 @@
             <img src="${pageContext.request.contextPath}/public/imgs/logo.png" class="img-fluid rounded-top" alt="No Loading" style=" width:140px ;height: 70px">
             </a>
         </div>
-        <ul class="navbar-nav">
-            <li class="nav-item active mr-4 dropdown" style="align-items: center!important;">
+        <ul class="navbar-nav ">
+            <li class="nav-item active mr-4 dropdown ">
                 <c:choose>
                     <c:when test="${auth}">
                         <form id="frmLogout" method="post" action="${pageContext.request.contextPath}/Account/Logout"></form>
@@ -65,40 +65,4 @@
             </li>
         </ul>
     </nav>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light  ">
-        <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link mr-5 ml-5 text-success" href="#">
-                        <i class="fa fa-star text-success" aria-hidden="true"></i>
-                        Comment <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link mr-5 ml-5 text-danger" href="${pageContext.request.contextPath}/WatchList?uid=${authUser.id}">
-                        <i class="fa fa-heart-o text-danger" aria-hidden="true"></i>
-                        Favorite Product
-                    </a>
-                </li>
-                <li class="nav-item mr-5 ml-5">
-                    <a class="nav-link text-warning" href="${pageContext.request.contextPath}/Account/YourProduct?uid=${authUser.id}">
-                        <i class="fa fa-newspaper-o text-warning" aria-hidden="true"></i>
-                        On Auction</a>
-                </li>
-                <li class="nav-item mr-5 ml-5">
-                    <a class="nav-link text-info" href="${pageContext.request.contextPath}/Account/YourProduct?uid=${authUser.id}">
-                        <i class="fa fa-check-square text-info" aria-hidden="true"></i>
-                        Successful Auction</a>
-                </li>
-
-                <li class="nav-item mr-5 ml-5">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/Admin"  id="watchlist">
-                        <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-                        Manage
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
 </div>

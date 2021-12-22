@@ -7,7 +7,7 @@
 
 <div class="left col-xl-2 mt-1" style="padding-right: 0px">
     <div class="card mt-1" style="position: sticky; top:0; z-index: 1;">
-        <h4 class="card-header bg-info">
+        <h4 class="card-header" style="background-image: linear-gradient(#ea8215, #eca45d); color: white">
             Category
         </h4>
         <div class="list-group list-group-flush">

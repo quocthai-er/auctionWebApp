@@ -1,5 +1,5 @@
 <a name="contact"></a>
-<section class="footer bg-info">
+<section class="footer " style="background-color: #DCDCDC; color: black">
     <div class="container tex-center">
         <div class="row">
             <div class="col-md-4">
