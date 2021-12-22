@@ -41,7 +41,7 @@
             });
             function remove (otp){
                 $.getJSON(otp, function (data) {
-                    if (data === 'false') {
+                    if (data === false) {
                         swal({
                             title: "Failed!",
                             text: "Failed deleted to your watchlist!",
@@ -69,7 +69,7 @@
         </script>
     </jsp:attribute>
     <jsp:body>
-        <h3 class="text-center mb-3 mt-3 bg-danger text-light">My WatchList</h3>
+        <h3 class="text-center mb-3 mt-3 bg-danger text-light" style="font-family: 'Bauhaus 93'">My WatchList</h3>
         <%--<div class="row">--%>
             <section class="on-sale">
                 <div class="container-fluid t1">
@@ -104,6 +104,8 @@
                     </div>
                 </div>
             </section>
+
+        </div>
         <%--</div>--%>
     </jsp:body>
 </t:watchlist>

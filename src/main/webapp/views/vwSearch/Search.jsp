@@ -43,7 +43,7 @@
             function add (otp){
                 {
                     $.getJSON(otp, function (data) {
-                        if (data === 'false') {
+                        if (data === false) {
                             swal({
                                 title: "Failed!",
                                 text: "Failed added to your watchlist!",
@@ -110,9 +110,11 @@
                                         </div>
                                         <div class="product-bottom text-center">
                                             <h3 class="mx-auto" name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
-                                            <h5 style="margin: 0">Price Current: ${p.price_current}</h5>
+                                            <h5 style="margin: 0">Price Current: $
+                                                <fmt:formatNumber value="${p.price_current}" type="number" /></h5>
                                             <c:if test="${p.price_now!=0}">
-                                                <h5>Price Buy Now: ${p.price_now}</h5>
+                                                <h5>Price Buy Now: $
+                                                    <fmt:formatNumber value="${p.price_now}" type="number" /></h5>
                                             </c:if>
                                             <h5>Start Date:
                                                 <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
