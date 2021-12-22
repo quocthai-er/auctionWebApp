@@ -3,23 +3,23 @@
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
 
 <div class="header">
-    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <nav class="navbar navbar-expand-lg navbar-light " style="background-image: linear-gradient(#ea8215, #eca45d)">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-lg-between"  id="navbarSupportedContent">
             <a href="${pageContext.request.contextPath}/Home"><img src="${pageContext.request.contextPath}/public/imgs/logo.png" class="img-fluid rounded-top"
-                    alt="No Loading" style=" width:140px ;height: 70px"></a>
-            <nav class="navbar navbar-light bg-info d-inline">
+                                                                   alt="No Loading" style=" width:140px ;height: 70px"></a>
+            <nav class="navbar navbar-light d-inline" style="background-image: linear-gradient(#ea8215, #eca45d)">
                 <div class="form-inline">
-<%--                    <ul class="navbar-nav">--%>
-<%--                        <li class="nav-item dropdown-toggle-split">--%>
-<%--                            <select class="nav-link text-dark bg-light mr-2" style="border: 0; border-radius: 5px;">--%>
-<%--                                <option value="Product">Product</option>--%>
-<%--                                <option value="Category">Category</option>--%>
-<%--                            </select>--%>
-<%--                        </li>--%>
-<%--                    </ul>--%>
+                    <%--                    <ul class="navbar-nav">--%>
+                    <%--                        <li class="nav-item dropdown-toggle-split">--%>
+                    <%--                            <select class="nav-link text-dark bg-light mr-2" style="border: 0; border-radius: 5px;">--%>
+                    <%--                                <option value="Product">Product</option>--%>
+                    <%--                                <option value="Category">Category</option>--%>
+                    <%--                            </select>--%>
+                    <%--                        </li>--%>
+                    <%--                    </ul>--%>
                     <input id="search" class="form-control mr-sm-3" name="search"  type="search" placeholder="Search" aria-label="Search" style="width: 500px">
                     <button id="btnSearch" class="btn btn-outline-success text-light bg-success my-2 my-sm-0 " type="button" onclick="Found('${pageContext.request.contextPath}')" >
                         <i class="fa fa-search"></i>
@@ -28,7 +28,7 @@
                 </div>
             </nav>
             <ul class="navbar-nav">
-                <li class="nav-item active mr-4"><a href="${pageContext.request.contextPath}/WatchList?uid=${authUser.id}"  id="watchlist" class="text-light">
+                <li class="nav-item active mr-4 "><a href="${pageContext.request.contextPath}/WatchList?uid=${authUser.id}"  id="watchlist" class="text-light " style="font-weight: bold" >
                     <i class="fa fa-heart text-danger" aria-hidden="true"></i>
                     WatchList
                 </a>
@@ -40,7 +40,7 @@
                     <c:choose>
                         <c:when test="${auth}">
                             <form id="frmLogout" method="post" action="${pageContext.request.contextPath}/Account/Logout"></form>
-                            <a href="${pageContext.request.contextPath}/Account/Login" class="text-light">
+                            <a href="${pageContext.request.contextPath}/Account/Login" class="text-light " style="font-weight: bold">
                                 <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                                 <c:set var="nameParts" value="${fn:split(authUser.name, ' ')}"/>
                                 Hi, <b>${nameParts[0]}!</b>
@@ -53,8 +53,8 @@
                             <ul class="dropdown-menu mt-0 dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                 <c:choose>
                                     <c:when test="${authUser.role == 1}"><li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/BidderProfile">
-                                            <i class="fa fa-user" aria-hidden="true"></i> Profile
-                                        </a></li></c:when>
+                                        <i class="fa fa-user" aria-hidden="true"></i> Profile
+                                    </a></li></c:when>
                                     <c:when test="${authUser.role == 0}"><li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/Profile">
                                         <i class="fa fa-user" aria-hidden="true"></i> Profile
                                     </a></li></c:when>
@@ -74,7 +74,7 @@
                             </ul>
                         </c:when>
                         <c:otherwise>
-                            <a href="${pageContext.request.contextPath}/Account/Login" class="text-light">
+                            <a href="${pageContext.request.contextPath}/Account/Login" class="text-light " style="font-weight: bold">
                                 <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                                 Login/Register
                             </a>
@@ -93,7 +93,7 @@
         </div>
     </nav>
     <!-- Nav Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mt-1 ">
+    <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #F5F5F5">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -116,11 +116,11 @@
                         <i class="fa fa-history text-warning" aria-hidden="true"></i>
                         History</a>
                 </li>
-<%--                <li class="nav-item mr-5 ml-5">--%>
-<%--                    <a class="nav-link text-info" href="#contact">--%>
-<%--                        <i class="fa fa-info-circle text-info" aria-hidden="true"></i>--%>
-<%--                        About</a>--%>
-<%--                </li>--%>
+                <%--                <li class="nav-item mr-5 ml-5">--%>
+                <%--                    <a class="nav-link text-info" href="#contact">--%>
+                <%--                        <i class="fa fa-info-circle text-info" aria-hidden="true"></i>--%>
+                <%--                        About</a>--%>
+                <%--                </li>--%>
                 <li class="nav-item mr-5 ml-5">
                     <a class="nav-link text-info" href="#contact">
                         <i class="fa fa-address-card text-info" aria-hidden="true"></i>

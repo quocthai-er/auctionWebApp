@@ -1,11 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <t:account>
     <jsp:attribute name="js">
         <script>
             // Forgot password form
-            $('#formRegister').on('submit', function (e) {
+            $('#formForgot').on('submit', function (e) {
                 e.preventDefault();
                 Validator({
                     form: '#formForgot',
@@ -20,25 +21,48 @@
                 const otp = $('#forgotOTP').val();
                 $('#btnForgot').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> &nbsp; Loading...')
                 // check if email is exists
-                $.getJSON('${pageContext.request.contextPath}/Account/IsAvailable?email=' + email, function (data) {
+                if ($('#forgotName').val() == 0) {
+                    swal({
+                        title: "Invalid email!",
+                        text: "Please fill your valid email!",
+                        icon: "warning",
+                        button: "OK!",
+                    });
+                    $('#btnForgot').html('Send password reset email')
+                } else {
+                    $.getJSON('${pageContext.request.contextPath}/Account/IsAvailable?email=' + email, function (data) {
                     if (data === false) {
                         // check otp
-                        $.getJSON('${pageContext.request.contextPath}/Account/SendOTP?email=' + email+'&otp=' +otp, function (otpData) {
-                            $('#btnOTP').html('Send password reset email')
-                            if (otpData === false) {
-                                swal({
-                                    title: "Wrong OTP!",
-                                    text: "Your OTP is invalid. Please try again!",
-                                    icon: "error",
-                                    button: "OK!",
-                                    dangerMode: true,
-                                    closeOnClickOutside: false,
-                                });
-                            } else {
-                                $('#formForgot').off('submit').submit();
-                                alert('Password Reset Successfully');
-                            }
-                        });
+                        if (otp !== '') {
+                            $.getJSON('${pageContext.request.contextPath}/Account/SendOTP?email=' + email+'&otp=' +otp, function (otpData) {
+                                $('#btnOTP').html('Send again')
+                                if (otpData === false) {
+                                    swal({
+                                        title: "Wrong OTP!",
+                                        text: "Your OTP is invalid. Please try again!",
+                                        icon: "error",
+                                        button: "OK!",
+                                        dangerMode: true,
+                                        closeOnClickOutside: false,
+                                    });
+                                    $('#forgotOTP').empty();
+                                    $('#btnForgot').html('Send password reset email')
+                                } else {
+                                    $('#formForgot').off('submit').submit();
+                                    alert('Password Reset Processing...');
+                                }
+                            });
+                        } else {
+                            swal({
+                                title: "Wrong OTP!",
+                                text: "Your OTP is invalid. Please try again!",
+                                icon: "error",
+                                button: "OK!",
+                                dangerMode: true,
+                                closeOnClickOutside: false,
+                            });
+                            $('#btnForgot').html('Send password reset email')
+                        }
                     } else {
                         swal({
                             title: "Invalid email!",
@@ -48,9 +72,12 @@
                             dangerMode: true,
                             closeOnClickOutside: false,
                         });
+                        $('#btnForgot').html('Send password reset email')
                     }
                 });
+                }
             });
+
             // Send OTP to client email
             $('#btnOTP').on('click', function () {
                 if ($('#forgotName').val() == 0)
@@ -105,6 +132,15 @@
             <div class="text-center mb-5">
                 <h3>Forgot Password</h3>
             </div>
+
+            <c:if test="${hasError}">
+                <div class="alert alert-danger alert-dismissible fade show w-75 mx-auto" role="alert">
+                    <strong>Login failed!</strong> ${errorMessage}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </c:if>
 
             <!-- Email and button send OTP to email-->
             <div class="form-group justify-content-center d-flex">

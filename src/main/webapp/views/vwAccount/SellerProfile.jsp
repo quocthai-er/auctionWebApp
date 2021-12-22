@@ -9,7 +9,7 @@
 
         <div class="card mx-auto justify-content-center d-flex mt-5" style="width: 30rem;">
             <div class="text-center mt-3">
-                <h3 class="text-info">Profile</h3>
+                <h3 class="text-primary" style="font-family: 'Bauhaus 93'">Profile</h3>
             </div>
             <i class="fa fa-user-circle fa-3x mx-auto" aria-hidden="true"></i>
             <div class="card-body justify-content-center d-flex">

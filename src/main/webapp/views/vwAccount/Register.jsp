@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:account>
+<t:EditUser>
     <jsp:attribute name="css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha512-f0tzWhCwVFS3WeYaofoLWkTP62ObhewQ1EZn65oSYDZUg1+CyywGKkWzm8BxaJj5HGKI72PnMH9jYyIFz+GH7g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </jsp:attribute>
@@ -110,7 +110,7 @@
             });
             // Send OTP to client email
             $('#btnOTP').on('click', function () {
-                $('#btnOTP').html('<div class="spinner-grow text-info" role="status"> <span class="sr-only">Loading...</span></div>');
+                $('#btnOTP').html('<div class="spinner-grow text-primary" role="status"> <span class="sr-only">Loading...</span></div>');
                 if ($('#registerEmail').val() == 0)
                 {
                     swal({
@@ -123,7 +123,7 @@
                     const otp = $('#registerOTP').val();
                     const email = $('#registerEmail').val();
                     $.getJSON('${pageContext.request.contextPath}/Account/IsAvailable?email=' + email, function (data) {
-                        if (data === false) {
+                        if (data === true) {
                             $.getJSON('${pageContext.request.contextPath}/Account/SendOTP?email=' + email+'&otp=' +otp, function (data) {
                                 $('#btnOTP').html('Send OTP')
                                 if (data === false) {
@@ -167,7 +167,7 @@
         <form class="mx-auto shadow rounded-lg bg-white mt-5 " action="" method="post" id="formRegister">
             <!-- Logo -->
             <div class="text-center mb-3">
-                <h3 class="text-info">Register</h3>
+                <h3 class="text-primary" style="font-family: 'Bauhaus 93'">Register</h3>
             </div>
 
             <!-- Họ và tên va dob -->
@@ -189,7 +189,7 @@
             <div class="form-group justify-content-center d-flex">
                 <div class="justify-content-center d-flex">
                     <input type="text" placeholder="Email" name="email" class="form-control mr-1 " style="width: 240px" id="registerEmail">
-                    <button type="button" name="button" class="btn btn-info p-0" style="width: 80px" id="btnOTP">Send OTP</button>
+                    <button type="button" name="button" class="btn btn-primary p-0" style="width: 80px" id="btnOTP">Send OTP</button>
                 </div>
                 <span class="form-message" style="margin-right: 215px;"></span>
             </div>
@@ -213,24 +213,23 @@
 
             <!-- Button đăng ký -->
             <div class="text-center">
-                <button type="submit" class="btn btn-info w-75" id="btnRegister">Register</button>
+                <button type="submit" class="btn btn-primary w-75" id="btnRegister">Register</button>
             </div>
 
-            <hr class="w-75 mx-auto bg-info">
-            <!-- Đăng ký với Google -->
+            <hr class="w-75 mx-auto bg-primary">
+            <!-- Quay lai Home -->
             <div class="text-center">
-                <a class="btn btn-outline-info" href="#" role="button">
-                    <i class="fa fa-google-plus mr-3" aria-hidden="true"></i>
-                    Register with Google
+                <a class="btn btn-outline-info" href="${pageContext.request.contextPath}/Home" role="button">
+                    <i class="fa fa-home" aria-hidden="true"></i> Home
                 </a>
             </div>
             <div class="text-center mt-3">
                 You already have an account?
-                <a class="btn btn-outline-info" id="switchLogin"  href="${pageContext.request.contextPath}/Account/Login" role="button">
+                <a class="btn btn-outline-danger" id="switchLogin"  href="${pageContext.request.contextPath}/Account/Login" role="button">
                     Login now
                 </a>
             </div>
         </form>
     </jsp:body>
-</t:account>
+</t:EditUser>
 

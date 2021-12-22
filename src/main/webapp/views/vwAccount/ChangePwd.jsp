@@ -28,7 +28,7 @@
         <div class="row h-100 justify-content-center align-items-center mt-5">
             <form class="h-100 mx-auto shadow rounded-lg bg-white " action="" method="post" id="formChangePwd">
                 <!-- Logo -->
-                <div class="text-center mb-3">
+                <div class="text-center text-primary mb-3" style="font-family: 'Bauhaus 93'">
                     <h3>Change Password</h3>
                 </div>
                     <%--Alert--%>
@@ -62,25 +62,25 @@
 
                 <!-- Button change -->
                 <div class="text-center">
-                    <button type="submit" class="btn btn-info w-75" id="btnChange">Save</button>
+                    <button type="submit" class="btn btn-primary w-75" id="btnChange">Save</button>
                 </div>
-                <hr class="w-75 mx-auto bg-info">
+                <hr class="w-75 mx-auto bg-primary">
                     <div class="text-center mt-3">
-                        <a class="text-info" href="${pageContext.request.contextPath}/Account/ForgotPassword">
+                        <a class="text-primary" href="${pageContext.request.contextPath}/Account/ForgotPassword">
                             Forgot password?
                         </a>
                     </div>
 
                     <div class="text-center mt-3">
                         <c:choose>
-                            <c:when test="${authUser.role == 1}"><a class="btn btn-outline-info" id="switchLogin" href="${pageContext.request.contextPath}/Account/BidderProfile" role="button">
+                            <c:when test="${authUser.role == 1}"><a class="btn btn-outline-danger" id="switchLogin" href="${pageContext.request.contextPath}/Account/BidderProfile" role="button">
                                 Return Profile
                             </a></c:when>
-                            <c:when test="${authUser.role == 0}"><a class="btn btn-outline-info" id="switchLogin" href="${pageContext.request.contextPath}/Account/Profile" role="button">
+                            <c:when test="${authUser.role == 0}"><a class="btn btn-outline-danger" id="switchLogin" href="${pageContext.request.contextPath}/Account/Profile" role="button">
                                 Return Profile
                             </a></c:when>
                             <c:otherwise>
-                                <a class="btn btn-outline-info" id="switchLogin" href="${pageContext.request.contextPath}/Account/SellerProfile" role="button">
+                                <a class="btn btn-outline-danger" id="switchLogin" href="${pageContext.request.contextPath}/Account/SellerProfile" role="button">
                                     Return Profile
                                 </a>
                             </c:otherwise>

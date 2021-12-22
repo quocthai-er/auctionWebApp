@@ -2,9 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--<jsp:useBean id="watchlists" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.WatchList>" />
-<%--<jsp:useBean id ="watchlist" scope="request" type="com.ute.auctionwebapp.beans.WatchList" >--%>
-<t:manager>
+<t:admin>
     <jsp:attribute name="js">
         <script>
             //Add paging
@@ -63,7 +61,8 @@
         </script>
     </jsp:attribute>
     <jsp:body>
-        <h3 class="text-center mb-3 mt-3 bg-danger text-light">Manage</h3>
+        <h3 class="text-center mb-3 mt-3 bg-primary text-light" style="font-family: 'Bauhaus 93'">Welcome To Control Manager</h3>
+        <img src="${pageContext.request.contextPath}/public/imgs/AdminMainImage.png" alt=“ad” style="width: 50%; height: 50%; display: block; margin-left: auto; margin-right: auto">
         <%--<div class="row">--%>
         <section class="on-sale">
             <div class="container-fluid t1">
@@ -100,4 +99,4 @@
         </section>
         <%--</div>--%>
     </jsp:body>
-</t:manager>
+</t:admin>

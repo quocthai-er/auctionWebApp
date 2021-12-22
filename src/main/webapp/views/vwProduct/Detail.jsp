@@ -122,7 +122,6 @@
                 });
             }
 
-
             $('#modalReject').on('show.bs.modal', function (event) {
                 let button = $(event.relatedTarget);
                 let proid = button.data('proid');
@@ -138,7 +137,7 @@
             function add (otp){
                 {
                     $.getJSON(otp, function (data) {
-                        if (data === 'false') {
+                        if (data === false) {
                             swal({
                                 title: "Failed!",
                                 text: "Failed added to your watchlist!",
@@ -199,8 +198,8 @@
     <jsp:body>
         <div class="right col-sm-9 ml-3 ">
             <div class="card mt-2">
-                <div class="card-header bg-warning">
-                    <h4 style="cursor:pointer;" class="text-center">${product.proname}</h4>
+                <div class="card-header" style="background-image: linear-gradient(#ea8215, #eca45d)">
+                    <h4 style="cursor:pointer; font-family: 'Arial';font-weight: bold" class="text-center">${product.proname}</h4>
                 </div>
                 <div class="card-body">
                     <div class="all" style="margin-left: 150px">
@@ -224,11 +223,11 @@
                             <img id="img_main" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/main.jpg" style="width: 400px;height: 400px; object-fit: contain;" alt="">
                         </div>
                     </div>
-                    <h4 style="cursor:pointer;" class="text-success text-center mt-3">
+                    <h4 style="cursor:pointer;" class="text-primary text-center mt-3">
                         Starting price:$
                         <fmt:formatNumber value="${product.price_start}" type="number" />
                     </h4>
-                    <h4 style="cursor:pointer;" class="text-success text-center mt-3">Current price:$
+                    <h4 style="cursor:pointer;" class="text-primary text-center mt-3">Current price:$
                         <fmt:formatNumber value="${product.price_current}" type="number" />
                     </h4>
                     <c:if test="${product.price_now!=0}">
@@ -243,19 +242,18 @@
                     <input id="price_cur" name="price_cur" type="hidden" value="${product.price_current}">
                     <div class="border border-info rounded" >
                         <div class="content mt-3 " style="margin-left: 50px">
-                            <h4 class="mr-2"><span class="text-info">Seller:</span> ${product.sell_name}</h4>
-                            <h4 class="mr-2"><span class="text-info">Highest Bidder:</span>
-                                <c:set var="nameParts" value="${fn:split(product.bid_name, ' ')}"/>
-                                *****${nameParts[0]}
+                            <h4 class="mr-2"><span class="text-info"> <b>Seller:</b></span> ${product.sell_name}</h4>
+                            <h4 class="mr-2"><span class="text-info"><b>Highest Bidder:</b></span>
+                                ${product.bid_name}
                             </h4>
-                            <h4 class="mr-2"><span class="text-info">Date Start: </span><fmt:parseDate value="${product.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
+                            <h4 class="mr-2"><span class="text-info"><b>Date Start:</b> </span><fmt:parseDate value="${product.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" /></h4>
                             <h4>
-                                <span class="text-info">Time remaining:</span>
+                                <span class="text-info"><b>Time remaining:</b></span>
                                 <span id="item" style="display: inline-block"></span>
                             </h4>
                             <h4>
-                                <span class="text-info">Product details:</span></h4>
+                                <span class="text-info"><b>Product details:</b></span></h4>
                             <div style="margin-left: 75px;!important;">${product.fulldes}</div>
 
                         </div>

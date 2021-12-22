@@ -4,7 +4,7 @@
 
 <div class="header">
     <!-- Top Nav -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <nav class="navbar navbar-expand-lg navbar-light " style="background-image: linear-gradient(#ea8215, #eca45d)">
         <div class="collapse navbar-collapse justify-content-lg-between" id="navbarSupportedContent">
             <a href="${pageContext.request.contextPath}/Home">
                 <img src="${pageContext.request.contextPath}/public/imgs/logo.png" class="img-fluid rounded-top" alt="No Loading" style=" width:140px ;height: 70px">
@@ -15,7 +15,7 @@
                     <c:choose>
                         <c:when test="${auth}">
                             <form id="frmLogout" method="post" action="${pageContext.request.contextPath}/Account/Logout"></form>
-                            <a href="${pageContext.request.contextPath}/Account/Login" class="text-light">
+                            <a href="${pageContext.request.contextPath}/Account/Login" class="text-light" style="font-weight: bold">
                                 <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                                 <c:set var="nameParts" value="${fn:split(authUser.name, ' ')}"/>
                                 Hi, <b>${nameParts[0]}!</b>
@@ -48,7 +48,7 @@
                             </ul>
                         </c:when>
                         <c:otherwise>
-                            <a href="${pageContext.request.contextPath}/Account/Login" class="text-light">
+                            <a href="${pageContext.request.contextPath}/Account/Login" class="text-light" style="font-weight: bold">
                                 <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                                 Login/Register
                             </a>
