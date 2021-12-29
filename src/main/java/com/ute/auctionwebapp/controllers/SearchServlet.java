@@ -32,10 +32,22 @@ public class SearchServlet extends HttpServlet {
                 request.setAttribute("products",list2);
                 ServletUtills.forward("/views/vwSearch/Search.jsp", request, response);
                 break;
+            case "/SortIncTime":
+                search = request.getParameter("search");
+                List<Product> list3 = ProductModel.SortIncTime(search);
+                request.setAttribute("products",list3);
+                ServletUtills.forward("/views/vwSearch/Search.jsp", request, response);
+                break;
             case "/SortDec":
                 search = request.getParameter("search");
-                List<Product> list3 = ProductModel.SortDec(search);
-                request.setAttribute("products",list3);
+                List<Product> list4 = ProductModel.SortDec(search);
+                request.setAttribute("products",list4);
+                ServletUtills.forward("/views/vwSearch/Search.jsp", request, response);
+                break;
+            case "/SortDecPrice":
+                search = request.getParameter("search");
+                List<Product> list5 = ProductModel.SortDecPrice(search);
+                request.setAttribute("products",list5);
                 ServletUtills.forward("/views/vwSearch/Search.jsp", request, response);
                 break;
             default:

@@ -50,7 +50,17 @@ public class UserModel {
                     .executeUpdate();
         }
     }
-
+    public static boolean deleteUser(int uid) {
+        String Sql = "delete from users where id=:uid";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(Sql)
+                    .addParameter("uid", uid)
+                    .executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
     public static void upgrage(User c) {
         String insertSql = "UPDATE users SET request = :request WHERE id = :id \n";
         try (Connection con = DbUtills.getConnection()) {
@@ -133,6 +143,14 @@ public class UserModel {
         try (Connection con = DbUtills.getConnection()) {
             return con.createQuery(query)
                     .executeAndFetch(User.class);
+        }
+    }
+    public static void updateExpiredSeller(int uid) {
+        String insertSql = "UPDATE users SET  role = 1,request_date = null WHERE id = :id \n";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(insertSql)
+                    .addParameter("id", uid)
+                    .executeUpdate();
         }
     }
 }

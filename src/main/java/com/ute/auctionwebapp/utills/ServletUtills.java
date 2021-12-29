@@ -21,4 +21,8 @@ public class ServletUtills {
             response.sendRedirect(url);
         }
     }
+    public static void redirectCate(String url, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        response.sendRedirect(request.getContextPath()+url);
+    }
 }
+

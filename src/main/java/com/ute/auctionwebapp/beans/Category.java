@@ -5,11 +5,6 @@ public class Category {
     private String catname;
     private int pid;
     private int level;
-    public Category(int id, String name) {
-    }
-
-    public Category(String name) {
-    }
 
     public int getPid() {
         return pid;
@@ -26,6 +21,20 @@ public class Category {
         this.level = level;
     }
 
+    public Category(String catname, int level,int pid) {
+        this.catname = catname;
+        this.pid = pid;
+        this.level = level;
+    }
+
+    public Category(int catid, String catname) {
+        this.catid = catid;
+        this.catname = catname;
+    }
+    public Category(String catname) {
+        this.catid = -1;
+        this.catname = catname;
+    }
     public int getCatid() {
         return catid;
     }

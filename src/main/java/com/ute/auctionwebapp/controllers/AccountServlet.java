@@ -220,6 +220,8 @@ public class AccountServlet extends HttpServlet {
                 if (url == null )
                     url = "/Home";
 
+                if(url.equals("/auctionWebApp/Admin/EditUser"))
+                    ServletUtills.redirect("/Home",request,response);
                 if (url.equals("/auctionWebApp/Account/YourProduct") || url.equals("/auctionWebApp/WatchList") || url.equals("/auctionWebApp/History"))
                     url = url + "?uid=" + user.getId();
                 ServletUtills.redirect(url, request, response);
@@ -267,7 +269,6 @@ public class AccountServlet extends HttpServlet {
         session.setAttribute("authUser", new User());
 
         String url = request.getHeader("referer");
-        if (url == null)
             url = "/Home";
         ServletUtills.redirect(url, request, response);
     }
@@ -291,7 +292,7 @@ public class AccountServlet extends HttpServlet {
     private void editDes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int proid = Integer.parseInt(request.getParameter("proid"),10);
         int uid = Integer.parseInt(request.getParameter("uid"),10);
-        String date = "<i class=\"fa fa-pencil\" aria-hidden=\"true\" ></i>Date modified: " + request.getParameter("date");
+        String date = "<i class=\"fa fa-pencil\" aria-hidden=\"true\" ></i> Date modified: " + request.getParameter("date");
         String fullDes = request.getParameter("fulldes");
 
         ProductModel.EditDes(proid,date,fullDes);

@@ -1,7 +1,9 @@
 package com.ute.auctionwebapp.filters;
 
 import com.ute.auctionwebapp.beans.Product;
+import com.ute.auctionwebapp.beans.User;
 import com.ute.auctionwebapp.models.ProductModel;
+import com.ute.auctionwebapp.models.UserModel;
 import com.ute.auctionwebapp.utills.MailUtills;
 
 import javax.servlet.*;
@@ -32,6 +34,14 @@ public class ExpiredFilter implements Filter {
                     Product p1 = ProductModel.findByBidid(p.getProid());
                     MailUtills.sendExpiredBid(p1.getSell_mail(),p1.getBid_mail(),p.getPrice_current(),p.getProname(),p1.getBid_name(),p1.getSell_name());
                 }
+            }
+        }
+
+        //Downgrade from seller to bidder when expired
+        List<User> userList = UserModel.findAll();
+        for (User u : userList) {
+            if (u.getRequest_date() != null && u.getRequest_date().isBefore(LocalDateTime.now())) {
+                UserModel.updateExpiredSeller(u.getId());
             }
         }
         chain.doFilter(req, res);

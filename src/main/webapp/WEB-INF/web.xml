@@ -91,6 +91,11 @@
     </filter-mapping>
 
     <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/Feedback/ViewComment</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
         <filter-name>ExpiredFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>

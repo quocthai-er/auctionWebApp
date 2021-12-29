@@ -1,7 +1,13 @@
+
 * {
 margin: 0;
 padding: 0;
 }
+html {
+    scroll-behavior: smooth;
+
+}
+
 /*Dropdown*/
 .dropdown:hover > .dropdown-menu {
     display: block;
@@ -13,6 +19,7 @@ padding: 0;
     /*Without this, clicking will make it sticky*/
     pointer-events: none;
 }
+
 .dropdown-submenu{
     position: relative;
 }
@@ -73,6 +80,80 @@ th     { background:#eee; }
 table  { border-collapse: collapse; width: 100%; }
 th, td { padding: 8px 16px; }
 th     { background:#eee; }
+
+/*Scrool To Top*/
+.scrollTop {
+    background-color: darkorange;
+    color: white;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 800px;
+    right: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid;
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: 1s;
+}
+
+.scrollTop.active {
+    bottom: 40px;
+    visibility: visible;
+    opacity: 1;
+}
+/*.nav-fix.active {*/
+/*    background-color: #eca45d;!important;*/
+/*    -webkit-transition: background-color 1000ms linear;*/
+/*    -ms-transition: background-color 1000ms linear;*/
+/*    transition: background-color 1000ms linear;*/
+/*}*/
+/*#grad1 {
+    height: 100%;
+    background-color: #cccccc;
+    background-image: linear-gradient(cadetblue, yellow);
+}
+#grad2 {
+    height: 200%;
+    background-color: #cccccc;
+    background-image: linear-gradient(lightyellow, lightblue);
+}
+#grad3 {
+    height: 100%;
+    background-color: #cccccc;
+    background-image: linear-gradient(lightpink, mediumpurple);
+}
+#grad4 {
+    height: 100%;
+    background-color: #cccccc;
+    background-image: linear-gradient(orangered, greenyellow, darkblue);
+}*/
+
+/*.hero-image {
+    background-image: url("../imgs/BackAd.png");
+    background-color: #cccccc;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.history-image {
+    background-image: url("../imgs/HistoryBack.png");
+    background-color: #cccccc;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}*/
+
+
 
 
 

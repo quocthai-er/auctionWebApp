@@ -247,7 +247,6 @@ body
     width: 180px;
     padding: 4px 10px;
     height: 40px;
-    margin-bottom: 30px;
     display: flex;
 }
 .title-box h2
@@ -257,12 +256,37 @@ body
 .title-box::after
 {
     content: '';
-    //border-top: 40px solid orange;
+    /*border-top: 40px solid orange;*/
     border-right: 50px solid transparent;
     position: absolute;
     display: flex;
     margin-top: -4px;
     margin-left: 170px;
+}
+
+.title-pro
+{
+    background: #eca45d;
+    color: #fff;
+    width: 250px;
+    padding: 4px 10px;
+    height: 40px;
+    margin-bottom: 30px;
+    display: flex;
+}
+.title-pro h2
+{
+    font-size: 24px;
+}
+.title-pro::after
+{
+    content: '';
+    border-top: 40px solid #eca45d;
+    border-right: 50px solid transparent;
+    position: absolute;
+    display: flex;
+    margin-top: -4px;
+    margin-left: 240px;
 }
 
 /*-------------product-top CSS----------------*/
@@ -275,10 +299,14 @@ body
     display: block;
     opacity: 0;
     position: absolute;
-    top: 10%;
+    top: 5%;
     margin-left: 0;
     width: 70px;
 }
+ .overlay-right .fa-heart-o
+ {
+     color: #dc3545!important;
+ }
 .overlay-right .fa
 {
     cursor: pointer;
@@ -290,6 +318,7 @@ body
     padding: 7px;
     margin-top: 5%;
     margin-bottom: 5%;
+    border: 1px solid #b3b3b3 !important;
 }
 .overlay-right .btn-secondary
 {
@@ -297,11 +326,97 @@ body
     border: none !important;
     box-shadow: none !important;
 }
-.product-top:hover .overlay-right
+.col-md-3
+{
+    border: 1px solid #f1f1f1;
+    border-radius: 10px;
+}
+.col-md-3:hover .overlay-right
 {
     opacity: 1;
     margin-left: 5%;
     transition: 0.5s;
+}
+.col-md-3:hover
+{
+    border: 1px solid #ea8215;!important;
+    box-shadow:  0 .5rem 1rem rgba(0,0,0,.15);
+}
+.col-md-3:hover img
+{
+    transform: translateY(-10px);
+    transition: 0.5s;
+}
+.col-md-3:hover h3
+{
+    color: orange;
+}
+/*New Lable in product*/
+.product-top .new-title {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+    overflow: hidden;
+}
+.product-top .new-title::before {
+    content: 'NEW';
+    position: absolute;
+    width: 150%;
+    height: 25px;
+    background-color: red;
+    transform: rotate(45deg) translateY(-20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: yellow;
+    letter-spacing: 0.1rem;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+.product-top .new-title::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    z-index: -1;
+    box-shadow: -50px -50px red;
+}
+
+/*highest bidder in product*/
+.product-top .top-bid {
+    position: absolute;
+    z-index: 50;
+    top: 110px;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+    overflow: hidden;
+}
+.product-top .top-bid::before {
+    content: 'You are the highest bidder';
+    position: absolute;
+    width: 150%;
+    height: 25px;
+    background-color: red;
+    transform: rotate(0deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 0.1rem;
 }
 
 /*--------------Product-bottom-CSS---------------*/
