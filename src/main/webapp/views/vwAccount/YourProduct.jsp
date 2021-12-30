@@ -16,8 +16,6 @@
                 background-image: url("https://cdn.tgdd.vn/mwgcart/mwg-site/ContentMwg/images/noel/Tagline/TGDD/tagline_desktop.png?v=1");
             }
 
-        </style>
-        <style>
             /* customizable snowflake styling */
             .snowflake {
                 color: #fff;
@@ -248,7 +246,6 @@
     </jsp:attribute>
 
     <jsp:body>
-        <a name ="top"></a>
         <div class="snowflakes" aria-hidden="true">
             <div class="snowflake">
                 ❅
@@ -287,6 +284,7 @@
                 ❆
             </div>
         </div>
+        <a name ="top"></a>
         <section class="selling">
             <div class="title-box d-flex justify-content-between mt-1 h-100 mb-3 w-100 header-pro" style="border-radius: 5px; position: sticky; top: 0px;z-index: 100">
                 <h2 class="font-weight-bold">YOUR PRODUCTS</h2>

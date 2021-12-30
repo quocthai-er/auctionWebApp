@@ -1,6 +1,8 @@
 <%@ tag pageEncoding="utf-8" %>
 <%@attribute name="js" fragment="true" required="false" %>
 <%@attribute name="css" fragment="true" required="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User"/>
 
 <html>
 <head>
@@ -28,7 +30,12 @@
     <jsp:invoke fragment="css"/>
 </head>
 <body>
-<jsp:include page="../../views/partials/Nav.jsp"/>
+<c:if test="${authUser.role==0}">
+    <jsp:include page="../../views/partials/NavAdmin.jsp"/>
+</c:if>
+<c:if test="${authUser.role!=0}">
+    <jsp:include page="../../views/partials/Nav.jsp"/>
+</c:if>
 <jsp:doBody/>
 <jsp:include page="../../views/partials/Footer.jsp"/>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
