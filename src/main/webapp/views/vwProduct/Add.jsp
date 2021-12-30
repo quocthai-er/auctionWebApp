@@ -2,6 +2,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
+<jsp:useBean id="catChild" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Category>"/>
 <t:watchlist>
     <jsp:attribute name="css">
         <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
@@ -24,8 +25,10 @@
         <script src="${pageContext.request.contextPath}/public/js/validator.js"></script>
 
         <script>
+            //validate when add prodct
             $('#frmAddProduct').on('submit', function (e) {
                 e.preventDefault();
+                tinymce.triggerSave();
                 Validator({
                     form: '#frmAddProduct',
                     formGroupSelector: '.form-group',
@@ -38,10 +41,25 @@
                         Validator.isRequired('#txtTinyDes', 'Please fill your tiny description'),
                         Validator.isRequired('#txtFullDes', 'Please fill your full description'),
                         Validator.isRequired('#txtCat', 'Please fill your category'),
-                        Validator.isRequired('#pics', 'Please choose images'),
+                        Validator.isRequired('#pics', 'Please upload picture products')
                     ],
                 });
-                $('#frmAddProduct').off('submit').submit();
+                check = $('#txtEndDay').val();
+                let parts = check.split('/');
+                let d = new Date()
+                x = new Date(parts[2],parts[1]-1,parts[0]);
+
+                if ((d-x)>=0) {
+                    swal({
+                        title: "Warning!",
+                        text: "Please check Ending date!",
+                        icon: "warning",
+                        button: "OK!",
+                        closeOnClickOutside: false,
+                    });
+                } else {
+                    $('#frmAddProduct').off('submit').submit();
+                }
             })
 
             tinymce.init({
@@ -78,6 +96,19 @@
             });
 
             $('#txtProName').focus();
+
+            //show alert when add product
+            if (${success}) {
+                swal({
+                    title: "Successfully!",
+                    text: "Successfully added product!",
+                    icon: "success",
+                    button: "OK!",
+                    closeOnClickOutside: false,
+                });
+            } else {
+
+            }
         </script>
     </jsp:attribute>
     <jsp:body>
@@ -95,11 +126,9 @@
                     <label for="txtCat">Product name</label>
                     <select name="catid" id="txtCat" class="w-100" style="border-radius: 25px; border-color: orange; height: 40px">
                         <option value="">Select a Category</option>
-                        <option value="1">Smart Phone</option>
-                        <option value="2">Laptop</option>
-                        <option value="3">Headphone</option>
-                        <option value="4">Mouse</option>
-                        <option value="7">Smart Watch</option>
+                        <c:forEach items="${catChild}" var="catChild">
+                            <option value="${catChild.catid}">${catChild.catname}</option>
+                        </c:forEach>
                     </select>
                     <span class="form-message" ></span>
                 </div>

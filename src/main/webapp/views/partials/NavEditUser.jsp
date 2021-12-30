@@ -31,11 +31,19 @@
                                     </a></li></c:when>
                                     <c:when test="${authUser.role == 0}"><li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/Profile">
                                         <i class="fa fa-user" aria-hidden="true"></i> Profile
-                                    </a></li></c:when>
+                                    </a></li>
+                                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Admin">
+                                            <i class="fa fa-cog" aria-hidden="true"></i>
+                                            Manage
+                                        </a></li>
+                                    </c:when>
                                    <c:otherwise><li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/SellerProfile">
                                        <i class="fa fa-user" aria-hidden="true"></i> Profile
                                    </a></li></c:otherwise>
                                 </c:choose>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/YourProduct?uid=${authUser.id}">
+                                    <i class="fa fa-product-hunt" aria-hidden="true"></i> Your Products
+                                </a></li>
                                 <li><a class="dropdown-item" href="javascript: $('#frmLogout').submit()">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i> Sign out
                                 </a></li>

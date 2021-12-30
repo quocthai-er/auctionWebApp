@@ -13,8 +13,9 @@
                                                                    alt="No Loading" style=" width:140px ;height: 70px"></a>
             <nav class="navbar navbar-light d-inline" style="background-image: linear-gradient(#ea8215, #eca45d)">
                 <div class="form-inline">
-                    <input id="search" class="form-control mr-sm-3" name="search"  type="search" placeholder="Search" aria-label="Search" style="width: 500px">
-                    <button id="btnSearch" class="btn btn-outline-success text-light bg-success my-2 my-sm-0 " type="button" onclick="Found('${pageContext.request.contextPath}')" >
+                    <input id="search" class="form-control mr-sm-3" onkeydown = "if (event.keyCode == 13)
+                        document.getElementById('btnSearch').click()" name="search"  type="search" placeholder="Search" aria-label="Search" style="width: 500px">
+                    <button id="btnSearch" class="btn btn-danger text-light my-2 my-sm-0 " type="button" onclick="Found('${pageContext.request.contextPath}')" >
                         <i class="fa fa-search"></i>
                         Search
                     </button>
@@ -40,14 +41,19 @@
                                     <c:otherwise>${"(Seller)"}</c:otherwise>
                                 </c:choose>
                             </a>
-                            <ul class="dropdown-menu mt-0 dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                            <ul class="dropdown-menu mt-0 dropdown-menu-right" style="z-index: 5000" aria-labelledby="navbarDropdownMenuLink">
                                 <c:choose>
                                     <c:when test="${authUser.role == 1}"><li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/BidderProfile">
                                         <i class="fa fa-user" aria-hidden="true"></i> Profile
                                     </a></li></c:when>
                                     <c:when test="${authUser.role == 0}"><li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/Profile">
                                         <i class="fa fa-user" aria-hidden="true"></i> Profile
-                                    </a></li></c:when>
+                                    </a></li>
+                                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Admin">
+                                            <i class="fa fa-cog" aria-hidden="true"></i>
+                                            Manage
+                                        </a></li>
+                                    </c:when>
                                     <c:otherwise>
                                         <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/SellerProfile">
                                             <i class="fa fa-user" aria-hidden="true"></i> Profile
@@ -83,7 +89,7 @@
         </div>
     </nav>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mt-1 ">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
         <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item active">

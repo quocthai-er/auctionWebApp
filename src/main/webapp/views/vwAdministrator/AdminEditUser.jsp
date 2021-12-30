@@ -10,9 +10,8 @@
     <jsp:attribute name="js">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
-
-            $('#formUpdate').on('submit', function (e) {
-                e.preventDefault();
+            // $('#formUpdate').on('submit', function (e) {
+            //     e.preventDefault();
                 Validator({
                     form: '#formUpdate',
                     formGroupSelector: '.form-group',
@@ -23,13 +22,12 @@
                         Validator.isRequired('#updateDob','Please fill your date of birth')
                     ],
                 });
-                $('#formUpdate').off('submit').submit();
-            });
+            //     $('#formUpdate').off('submit').submit();
+            // });
 
             $('#updateDob').datetimepicker({
                 format: 'd/m/Y',
                 timepicker: false,
-
             });
         </script>
     </jsp:attribute>
@@ -37,7 +35,7 @@
         <form class="mx-auto shadow rounded-lg bg-white mt-5 " action="" method="post" id="formUpdate" >
             <!-- Logo -->
             <div class="text-center mb-3">
-                <h3 class="text-primary" style="font-family: 'Bauhaus 93'">EDIT USER</h3>
+                <h3 class="text-primary" style="font-family: 'Russo One',sans-serif">Edit User</h3>
                 <input type="hidden" name="uid" value="${users.id}">
             </div>
 
@@ -61,15 +59,21 @@
                 <input type="text" placeholder="Address" class="form-control w-75" id="updateAddress" name="address" value="${users.address}">
                 <span class="form-message" style="margin-right: 185px;"></span>
             </div>
-
-            <!-- reCaptcha -->
-                <%-- <div class="form-group justify-content-center d-flex">
-                     <div class="g-recaptcha" data-sitekey="6LfnC1IdAAAAABU-jCMtW_w5y6dbyCbFHm05XZVZ"></div>
-                 </div>--%>
-
-            <!-- Button update -->
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary w-75" id="btnUpdate">Save </button>
+            <c:if test="${hasSuccess}">
+                <div class="alert alert-success alert-dismissible fade show w-75 mx-auto" role="alert">
+                    <strong>${Message}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </c:if>
+            <div class="d-flex justify-content-center">
+                <div class="text-center mr-3">
+                    <button type="submit" class="btn btn-success w-100" id="btnReset" formaction="${pageContext.request.contextPath}/Admin/User/ResetPassword?email=${users.email}">Reset Password</button>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary w-100" id="btnUpdate">Save </button>
+                </div>
             </div>
             <div class="text-center mt-3">
                 <a class="btn btn-outline-danger" id="switchLogin" href="${pageContext.request.contextPath}/Admin/User" role="button">

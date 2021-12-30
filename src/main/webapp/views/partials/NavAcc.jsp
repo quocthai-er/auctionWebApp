@@ -32,7 +32,12 @@
                                 </a></li></c:when>
                                 <c:when test="${authUser.role == 0}"><li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/Profile">
                                     <i class="fa fa-user" aria-hidden="true"></i> Profile
-                                </a></li></c:when>
+                                </a></li>
+                                    <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Admin">
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                        Manage
+                                    </a></li>
+                                </c:when>
                                 <c:otherwise>
                                     <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/SellerProfile">
                                         <i class="fa fa-user" aria-hidden="true"></i> Profile
@@ -69,9 +74,9 @@
         <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link mr-5 ml-5 text-success" href="#">
+                    <a class="nav-link mr-5 ml-5 text-success" href="${pageContext.request.contextPath}/Feedback/ViewFeedback">
                         <i class="fa fa-star text-success" aria-hidden="true"></i>
-                        Comment <span class="sr-only">(current)</span>
+                        Feedback <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -81,19 +86,19 @@
                     </a>
                 </li>
                 <li class="nav-item mr-5 ml-5">
-                    <a class="nav-link text-warning" href="${pageContext.request.contextPath}/Account/YourProduct?uid=${authUser.id}">
+                    <a class="nav-link text-warning" href="${pageContext.request.contextPath}/Account/YourProduct?uid=${authUser.id}#bidding">
                         <i class="fa fa-newspaper-o text-warning" aria-hidden="true"></i>
                         On Auction</a>
                 </li>
                 <li class="nav-item mr-5 ml-5">
-                    <a class="nav-link text-info" href="${pageContext.request.contextPath}/Account/YourProduct?uid=${authUser.id}">
+                    <a class="nav-link text-info" href="${pageContext.request.contextPath}/Account/YourProduct?uid=${authUser.id}#winning">
                         <i class="fa fa-check-square text-info" aria-hidden="true"></i>
                         Successful Auction</a>
                 </li>
 
                 <li class="nav-item mr-5 ml-5">
                     <a class="nav-link" href="${pageContext.request.contextPath}/Admin"  id="watchlist">
-                        <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                        <i class="fa fa-cog" aria-hidden="true"></i>
                         Manage
                     </a>
                 </li>

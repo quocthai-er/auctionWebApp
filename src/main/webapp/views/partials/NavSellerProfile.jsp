@@ -71,9 +71,9 @@
         <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link mr-5 ml-5 text-success" href="#">
+                    <a class="nav-link mr-5 ml-5 text-success" href="${pageContext.request.contextPath}/Feedback/ViewFeedback">
                         <i class="fa fa-star text-success" aria-hidden="true"></i>
-                        Comment <span class="sr-only">(current)</span>
+                        Feedback <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
